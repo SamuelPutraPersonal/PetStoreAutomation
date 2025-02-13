@@ -70,14 +70,14 @@ public class UserTests {
         userPayload.setLastName(faker.name().lastName());
         userPayload.setEmail(faker.internet().safeEmailAddress());
 
-        Response response = UserEndPoints.updateUser(userPayload.getUsername(), userPayload);
+        Response response = UserEndPoints.updateUser(this.userPayload.getUsername(), userPayload);
 
         Assert.assertEquals(response.getStatusCode(), 200);
 
         logger.info("********** User is Updated Successfully **********");
 
         // Checking data after update
-        Response responseAfterUpdate = readUser(userPayload.getUsername());
+        Response responseAfterUpdate = readUser(this.userPayload.getUsername());
         responseAfterUpdate.then().log().body();
         Assert.assertEquals(responseAfterUpdate.getStatusCode(), 200);
 
